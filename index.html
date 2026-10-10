@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cửa Hàng Công Nghệ Hiện Đại</title>
+    <style>
+        /* === Cấu trúc CSS Cốt lõi === */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f4f6f9; color: #333; }
+        header { background-color: #1a1a1a; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 24px; font-weight: bold; color: #00adb5; }
+        .cart-box { position: relative; cursor: pointer; font-weight: bold; }
+        
+        /* Vị trí quảng cáo chuyên nghiệp */
+        .ads-banner { background-color: #e3e6e6; text-align: center; padding: 15px; margin: 20px auto; max-width: 1200px; border: 1px dashed #bbb; color: #666; font-size: 14px; font-weight: bold; border-radius: 4px; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .product-card { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; transition: transform 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-img { width: 100%; height: 200px; background-color: #eee; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #aaa; margin-bottom: 15px; }
+        .product-title { font-size: 18px; margin-bottom: 10px; font-weight: 600; }
+        .product-price { color: #ff4d4d; font-size: 20px; font-weight: bold; margin-bottom: 15px; }
+        .btn-buy { background-color: #00adb5; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; transition: background 0.2s; }
+        .btn-buy:hover { background-color: #007c82; }
+        footer { background-color: #1a1a1a; color: #888; text-align: center; padding: 20px; margin-top: 40px; font-size: 14px; }
+    </style>
+    
+    <!-- ⚠️ CHÈN MÃ QUẢNG CÁO TÀI KHOẢN CỦA BẠN VÀO ĐÂY -->
+    <!-- Ví dụ mã nhúng tự động của Google AdSense:
+    <script async src="https://googlesyndication.com" crossorigin="anonymous"></script> 
+    -->
+</head>
+<body>
+
+    <!-- Thanh Điều Hướng Trên Cùng -->
+    <header>
+        <div class="logo">TechStore.io</div>
+        <div class="cart-box">🛒 Giỏ hàng (<span id="cart-count">0</span>)</div>
+    </header>
+
+    <!-- 📢 VỊ TRÍ QUẢNG CÁO 1: BANNER ĐẦU TRANG (Tỷ lệ nhấp chuột cao nhất) -->
+    <div class="ads-banner">
+        <!-- Thay thế dòng chữ dưới bằng mã AdSense Component của bạn -->
+        [ KHÔNG GIAN QUẢNG CÁO ĐẦU TRANG - ADS BANNER 728x90 ]
+    </div>
+
+    <!-- Danh Sách Sản Phẩm Bán Hàng -->
+    <main class="container">
+        <!-- Sản phẩm 1 -->
+        <div class="product-card">
+            <div class="product-img">Hình ảnh iPhone 15</div>
+            <div class="product-title">iPhone 15 Pro Max 256GB</div>
+            <div class="product-price">29.990.000 đ</div>
+            <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
+        </div>
+
+        <!-- Sản phẩm 2 -->
+        <div class="product-card">
+            <div class="product-img">Hình ảnh MacBook</div>
+            <div class="product-title">MacBook Air M3 2024</div>
+            <div class="product-price">27.490.000 đ</div>
+            <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
+        </div>
+
+        <!-- Sản phẩm 3 -->
+        <div class="product-card">
+            <div class="product-img">Hình ảnh Tai nghe</div>
+            <div class="product-title">Tai nghe AirPods Pro Gen 2</div>
+            <div class="product-price">5.690.000 đ</div>
+            <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
+        </div>
+    </main>
+
+    <!-- 📢 VỊ TRÍ QUẢNG CÁO 2: BANNER GIỮA TRANG (Giữ chân người xem khi lướt xem hàng) -->
+    <div class="ads-banner">
+        [ KHÔNG GIAN QUẢNG CÁO GIỮA TRANG - ADS BANNER INTERSTITIAL ]
+    </div>
+
+    <footer>
+        <p>&copy; 2026 TechStore. Bảo lưu mọi quyền.</p>
+    </footer>
+
+    <!-- === Kịch Bản Xử Lý JavaScript === -->
+    <script>
+        let count = 0;
+        function addToCart() {
+            count++;
+            document.getElementById('cart-count').innerText = count;
+            alert('Đã thêm sản phẩm thành công vào giỏ hàng của bạn!');
+        }
+    </script>
+</body>
+</html>
