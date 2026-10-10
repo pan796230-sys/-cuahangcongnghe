@@ -3,93 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cửa Hàng Công Nghệ Hiện Đại</title>
+    <title>TechStore Premium - Hệ Thống Công Nghệ Cao Cấp</title>
     <style>
-        /* === Cấu trúc CSS Cốt lõi === */
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f4f6f9; color: #333; }
-        header { background-color: #1a1a1a; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 24px; font-weight: bold; color: #00adb5; }
-        .cart-box { position: relative; cursor: pointer; font-weight: bold; }
-        
-        /* Vị trí quảng cáo chuyên nghiệp */
-        .ads-banner { background-color: #e3e6e6; text-align: center; padding: 15px; margin: 20px auto; max-width: 1200px; border: 1px dashed #bbb; color: #666; font-size: 14px; font-weight: bold; border-radius: 4px; }
-        
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .product-card { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; transition: transform 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
-        .product-card:hover { transform: translateY(-5px); }
-        .product-img { width: 100%; height: 200px; background-color: #eee; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #aaa; margin-bottom: 15px; }
-        .product-title { font-size: 18px; margin-bottom: 10px; font-weight: 600; }
-        .product-price { color: #ff4d4d; font-size: 20px; font-weight: bold; margin-bottom: 15px; }
-        .btn-buy { background-color: #00adb5; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; transition: background 0.2s; }
-        .btn-buy:hover { background-color: #007c82; }
-        footer { background-color: #1a1a1a; color: #888; text-align: center; padding: 20px; margin-top: 40px; font-size: 14px; }
+        :root { --primary: #00adb5; --dark: #1a1a1a; --light: #f8f9fa; --text: #2d3748; --price: #e53e3e; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background-color: var(--light); color: var(--text); line-height: 1.6; }
+        header { background-color: var(--dark); color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .logo { font-size: 26px; font-weight: 800; color: var(--primary); cursor: pointer; }
+        .search-container { flex: 0 1 400px; display: flex; }
+        .search-bar { width: 100%; padding: 10px 15px; border-radius: 20px; border: none; background: #2d2d2d; color: white; font-size: 14px; outline: none; }
+        .search-bar:focus { background: #3d3d3d; box-shadow: 0 0 0 2px var(--primary); }
+        .cart-box { background: #2d2d2d; padding: 8px 18px; border-radius: 20px; font-weight: 600; cursor: pointer; }
+        .ads-container { width: 100%; text-align: center; padding: 15px; margin: 15px 0; background: #fff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: bold; color: #a0aec0; }
+        .ads-sidebar { background: #fff; border: 1px dashed #cbd5e0; padding: 20px; text-align: center; font-size: 12px; color: #718096; min-height: 400px; display: flex; align-items: center; justify-content: center; }
+        .main-wrapper { max-width: 1400px; margin: 0 auto; padding: 20px 5%; display: grid; grid-template-columns: 1fr 280px; gap: 30px; }
+        @media (max-width: 1024px) { .main-wrapper { grid-template-columns: 1fr; } .ads-sidebar { display: none; } }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; }
+        .product-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); border: 1px solid #edf2f7; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s; }
+        .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 20px rgba(0,0,0,0.08); border-color: var(--primary); }
+        .product-tag { align-self: flex-start; background: #e6fffa; color: #234e52; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 4px; margin-bottom: 12px; text-transform: uppercase; }
+        .product-img { width: 100%; height: 150px; background-color: #f7fafc; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 40px; margin-bottom: 15px; border: 1px solid #f1f5f9; }
+        .product-title { font-size: 16px; margin-bottom: 8px; font-weight: 600; color: #1a202c; height: 48px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .product-price { color: var(--price); font-size: 18px; font-weight: 700; margin-bottom: 15px; }
+        .btn-buy { background-color: var(--dark); color: white; border: none; padding: 11px; border-radius: 6px; cursor: pointer; font-weight: 600; width: 100%; transition: all 0.2s; }
+        .btn-buy:hover { background-color: var(--primary); color: var(--dark); }
+        footer { background-color: var(--dark); color: #718096; text-align: center; padding: 30px; margin-top: 60px; font-size: 14px; border-top: 3px solid var(--primary); }
     </style>
-    
-    <!-- ⚠️ CHÈN MÃ QUẢNG CÁO TÀI KHOẢN CỦA BẠN VÀO ĐÂY -->
-    <!-- Ví dụ mã nhúng tự động của Google AdSense:
-    <script async src="https://googlesyndication.com" crossorigin="anonymous"></script> 
-    -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1559045618390739"
-     crossorigin="anonymous"></script>
+    <script async src="https://googlesyndication.com" crossorigin="anonymous"></script>
 </head>
 <body>
-
-    <!-- Thanh Điều Hướng Trên Cùng -->
     <header>
-        <div class="logo">TechStore.io</div>
+        <div class="logo" onclick="window.location.reload()">TechStore</div>
+        <div class="search-container">
+            <input type="text" class="search-bar" id="search-input" placeholder="Tìm sản phẩm..." onkeyup="filterProducts()">
+        </div>
         <div class="cart-box">🛒 Giỏ hàng (<span id="cart-count">0</span>)</div>
     </header>
-
-    <!-- 📢 VỊ TRÍ QUẢNG CÁO 1: BANNER ĐẦU TRANG (Tỷ lệ nhấp chuột cao nhất) -->
-    <div class="ads-banner">
-        <!-- Thay thế dòng chữ dưới bằng mã AdSense Component của bạn -->
-        [ KHÔNG GIAN QUẢNG CÁO ĐẦU TRANG - ADS BANNER 728x90 ]
+    <div class="ads-container">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-796230-sys" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
     </div>
-
-    <!-- Danh Sách Sản Phẩm Bán Hàng -->
-    <main class="container">
-        <!-- Sản phẩm 1 -->
-        <div class="product-card">
-            <div class="product-img">Hình ảnh iPhone 15</div>
-            <div class="product-title">iPhone 15 Pro Max 256GB</div>
-            <div class="product-price">29.990.000 đ</div>
-            <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
-        </div>
-
-        <!-- Sản phẩm 2 -->
-        <div class="product-card">
-            <div class="product-img">Hình ảnh MacBook</div>
-            <div class="product-title">MacBook Air M3 2024</div>
-            <div class="product-price">27.490.000 đ</div>
-            <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
-        </div>
-
-        <!-- Sản phẩm 3 -->
-        <div class="product-card">
-            <div class="product-img">Hình ảnh Tai nghe</div>
-            <div class="product-title">Tai nghe AirPods Pro Gen 2</div>
-            <div class="product-price">5.690.000 đ</div>
-            <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
-        </div>
-    </main>
-
-    <!-- 📢 VỊ TRÍ QUẢNG CÁO 2: BANNER GIỮA TRANG (Giữ chân người xem khi lướt xem hàng) -->
-    <div class="ads-banner">
-        [ KHÔNG GIAN QUẢNG CÁO GIỮA TRANG - ADS BANNER INTERSTITIAL ]
+    <div class="main-wrapper">
+        <main class="products-grid" id="products-list">
+            <div class="product-card" data-name="iphone 15 pro max">
+                <span class="product-tag">Bán Chạy</span>
+                <div class="product-img">📱</div>
+                <div class="product-title">iPhone 15 Pro Max 256GB - Chính hãng VNA</div>
+                <div class="product-price">29.490.000 đ</div>
+                <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="product-card" data-name="macbook air m3 2024">
+                <span class="product-tag">Mới Về</span>
+                <div class="product-img">💻</div>
+                <div class="product-title">MacBook Air 13 inch M3 (8GB / 256GB) 2024</div>
+                <div class="product-price">26.990.000 đ</div>
+                <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="product-card" data-name="ipad pro m4 ultra thin">
+                <span class="product-tag">Cao Cấp</span>
+                <div class="product-img">📟</div>
+                <div class="product-title">iPad Pro 11 inch M4 (Wifi - 256GB) Siêu Mỏng</div>
+                <div class="product-price">28.190.000 đ</div>
+                <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="product-card" data-name="apple watch ultra 2">
+                <span class="product-tag">Thể Thao</span>
+                <div class="product-img">⌚</div>
+                <div class="product-title">Apple Watch Ultra 2 GPS + Cellular 49mm</div>
+                <div class="product-price">21.490.000 đ</div>
+                <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="product-card" data-name="tai nghe airpods pro gen 2">
+                <span class="product-tag">Âm Thanh</span>
+                <div class="product-img">🎧</div>
+                <div class="product-title">Tai nghe Bluetooth Apple AirPods Pro Gen 2 MagSafe</div>
+                <div class="product-price">5.590.000 đ</div>
+                <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="product-card" data-name="loa bluetooth jbl charge 5">
+                <span class="product-tag">Giảm Giá</span>
+                <div class="product-img">🔊</div>
+                <div class="product-title">Loa Bluetooth Chống Nước JBL Charge 5 40W</div>
+                <div class="product-price">3.650.000 đ</div>
+                <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="product-card" data-name="tai nghe chụp tai sony wh-1000xm5">
+                <span class="product-tag">Chống Ồn</span>
+                <div class="product-img">🎧</div>
+                <div class="product-title">Tai nghe chống ồn chủ động Sony WH-1000XM5</div>
+                <div class="product-price">7.990.000 đ</div>
+                <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="product-card" data-name="ban phim co logitech mx mechanical">
+                <span class="product-tag">Văn Phòng</span>
+                <div class="product-img">⌨️</div>
+                <div class="product-title">Bàn phím cơ không dây Logitech MX Mechanical</div>
+                <div class="product-price">3.890.000 đ</div>
+                <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="product-card" data-name="chuot khong day logitech mx master 3s">
+                <span class="product-tag">Ergonomic</span>
+                <div class="product-img">🖱️</div>
+                <div class="product-title">Chuột không dây công thái học Logitech MX Master 3S</div>
+                <div class="product-price">2.350.000 đ</div>
+                <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="product-card" data-name="may choi game sony playstation 5 ps5 slim">
+                <span class="product-tag">Gaming</span>
+                <div class="product-img">🎮</div>
+                <div class="product-title">Máy chơi game Sony PlayStation 5 (PS5) Slim 1TB</div>
+                <div class="product-price">12.890.000 đ</div>
+                <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="product-card" data-name="sac du phong anker prime 200w">
+                <span class="product-tag">Tiện Ích</span>
+                <div class="product-img">🔋</div>
+                <div class="product-title">Sạc dự phòng sạc nhanh Anker Prime 200W 20.000mAh</div>
+                <div class="product-price">2.450.000 đ</div>
+                <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="product-card" data-name="kinh thuc te ao thong minh meta quest 3">
+                <span class="product-tag">Xu Hướng</span>
+                <div class="product-img">🥽</div>
+                <div class="product-title">Kính thực tế ảo thông minh Meta Quest 3 128GB</div>
+                <div class="product-price">13.200.000 đ</div>
+                <button class="btn-buy" onclick="addToCart()">Thêm vào giỏ hàng</button>
+            </div>
+        </main>
+        <aside class="ads-sidebar">
+            <div>
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-796230-sys" data-ad-slot="auto" data-ad-format="auto"></ins>
+                <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+            </div>
+        </aside>
     </div>
-
     <footer>
-        <p>&copy; 2026 TechStore. Bảo lưu mọi quyền.</p>
+        <p>&copy; 2026 TechStore Premium Ecosystem. Thiết kế tinh tế, kết nối tương lai.</p>
     </footer>
-
-    <!-- === Kịch Bản Xử Lý JavaScript === -->
     <script>
         let count = 0;
         function addToCart() {
             count++;
             document.getElementById('cart-count').innerText = count;
-            alert('Đã thêm sản phẩm thành công vào giỏ hàng của bạn!');
+            alert('🛍️ Tuyệt vời! Sản phẩm cao cấp này đã được thêm vào giỏ hàng của bạn!');
+        }
+        function filterProducts() {
+            let input = document.getElementById('search-input').value.toLowerCase();
+            let cards = document.getElementsByClassName('product-card');
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].getAttribute('data-name');
+                if (name) {
+                    if (name.includes(input)) { cards[i].style.display = "flex"; }
+                    else { cards[i].style.display = "none"; }
+                }
+            }
         }
     </script>
 </body>
